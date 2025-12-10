@@ -18,8 +18,10 @@ class User extends Authenticatable
      * @var list<string>
      */
     protected $fillable = [
-        'name',
+        'username',
         'email',
+        'role',
+        'is_verified',
         'password',
     ];
 
@@ -38,6 +40,11 @@ class User extends Authenticatable
      *
      * @return array<string, string>
      */
+    public function posts()
+    {
+        return $this->hasMany(Post::class);
+    }
+
     protected function casts(): array
     {
         return [
