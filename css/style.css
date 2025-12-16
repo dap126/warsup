@@ -1,5 +1,122 @@
 /********** Template CSS **********/
 
+/* LEFT BIG CARD */
+.news-card {
+  position: relative;
+  height: 100%;
+  border-radius: 3px;
+  overflow: hidden;
+  background: #000;
+}
+
+.news-card img {
+    height: 460px;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+}
+
+.news-card:hover img {
+    transform: scale(1.05);
+}
+
+/* Overlay content */
+.news-overlay {
+  position: relative;
+  z-index: 2;
+  height: 100%;
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  color: #fff;
+}
+
+/* Background image */
+.news-card-bg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  filter: brightness(0.65);
+}
+
+.news-overlay h3 {
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+/* ======================
+   HOVER IMAGE EFFECT
+   ====================== */
+
+/* Left big card */
+.news-card-bg {
+  transition: transform 0.6s ease, filter 0.6s ease;
+}
+
+.news-card:hover .news-card-bg {
+  transform: scale(1.08);
+  filter: brightness(0.55);
+}
+
+/* RIGHT SMALL CARDS */
+.small-card {
+  position: relative;
+  border-radius: 3px;
+  overflow: hidden;
+  background: #000;
+  flex: 1;
+}
+
+/* Image as background */
+.small-card-bg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  filter: brightness(0.6);
+}
+
+/* Overlay content */
+.small-card-content {
+  position: relative;
+  z-index: 2;
+  padding: 14px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.small-card h6 {
+  color: #fff;
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.small-card span {
+  font-size: 0.8rem;
+  color: #ccc;
+}
+
+/* Right small cards */
+.small-card-bg {
+  transition: transform 0.5s ease, filter 0.5s ease;
+}
+
+.small-card:hover .small-card-bg {
+  transform: scale(1.08);
+  filter: brightness(0.5);
+}
+
+/* Optional: cursor */
+.news-card,
+.small-card {
+  cursor: pointer;
+}
+
 .back-to-top {
     position: fixed;
     display: none;
