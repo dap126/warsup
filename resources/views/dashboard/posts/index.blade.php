@@ -9,11 +9,7 @@
             </a>
         </div>
         
-        @if (session('success'))
-            <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative mb-4" role="alert">
-                <span class="block sm:inline">{{ session('success') }}</span>
-            </div>
-        @endif
+
 
         <div class="flex flex-col">
             <div class="overflow-x-auto shadow-md sm:rounded-lg">
@@ -64,7 +60,7 @@
                                         <td class="p-4 whitespace-nowrap space-x-2">
                                             <a href="{{ route('posts.show', $post) }}" class="text-blue-600 hover:text-blue-900 font-medium text-sm">View</a>
                                             <a href="{{ route('posts.edit', $post) }}" class="text-yellow-600 hover:text-yellow-900 font-medium text-sm">Edit</a>
-                                            <form action="{{ route('posts.destroy', $post) }}" method="POST" class="inline-block" onsubmit="return confirm('Are you sure you want to delete this post?');">
+                                            <form action="{{ route('posts.destroy', $post) }}" method="POST" class="inline-block delete-confirm">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit" class="text-red-600 hover:text-red-900 font-medium text-sm">Delete</button>

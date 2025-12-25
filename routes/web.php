@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\ServiceController;
 
 // Public Routes (Only Auth)
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
@@ -19,7 +20,7 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 Route::middleware(['auth'])->group(function () {
     // Home & List Post (User & Admin)
     Route::get('/', function () {
-        $recentPosts = \App\Models\Post::latest()->take(3)->get();
+        $recentPosts = \App\Models\Post::with('user')->latest()->take(3)->get();
         return view('home', compact('recentPosts'));
     });
     // Create Posts (All Authenticated Users)
@@ -34,10 +35,29 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/posts', [PostController::class, 'index'])->name('posts.index');
     Route::get('/posts/{post}', [PostController::class, 'show'])->name('posts.show');
 
+    // Public Service List
+    Route::get('/services', [ServiceController::class, 'index'])->name('services.index');
+    // We can add show route if needed, but for now redirecting to index in controller
+    // Route::get('/services/{service}', [ServiceController::class, 'show'])->name('services.show');
+
     // Admin Only Routes
     Route::middleware([\App\Http\Middleware\IsAdmin::class])->group(function () {
         Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
         Route::get('/dashboard/posts', [DashboardController::class, 'posts'])->name('dashboard.posts');
+        Route::get('/dashboard/services', [DashboardController::class, 'services'])->name('dashboard.services');
+        
+        // Service Management (CRUD Actions)
+        // Note: 'index' is taken by public route above, but inside resource it would be 'services.index'.
+        // Since we manually defined public 'services.index' above, we should be careful.
+        // We will stick to using specific routes or allowing resource to register but knowing 'services.index' might conflict.
+        // Actually, Laravel route priority matters. The public one is defined first? No, last defined wins if names match?
+        // Let's be explicit to avoid confusion:
+        
+        Route::get('/services/create', [ServiceController::class, 'create'])->name('services.create');
+        Route::post('/services', [ServiceController::class, 'store'])->name('services.store');
+        Route::get('/services/{service}/edit', [ServiceController::class, 'edit'])->name('services.edit');
+        Route::put('/services/{service}', [ServiceController::class, 'update'])->name('services.update');
+        Route::delete('/services/{service}', [ServiceController::class, 'destroy'])->name('services.destroy');
         
         // User Management
         Route::get('/users', [\App\Http\Controllers\UserController::class, 'index'])->name('users.index');
@@ -51,35 +71,34 @@ Route::get('/uploads/{filename}', function ($filename) {
     
     $disk = Storage::disk('google');
 
-    $path1 = $filename;
-    $path2 = 'uploads/' . $filename;
+    // Logic: 
+    // $filename could be 'image.jpg' or 'posts/image.jpg' or 'services/image.jpg'
+    // We check various possibilities.
+
+    $possiblePaths = [
+        $filename,                          // As provided (standard usage)
+        'uploads/' . $filename,             // In uploads root
+        'uploads/posts/' . $filename,       // Fallback for just filename provided
+        'uploads/services/' . $filename,    // Fallback for just filename provided
+    ];
 
     $finalPath = null;
 
-    if ($disk->exists($path1)) {
-        $finalPath = $path1;
-    } elseif ($disk->exists($path2)) {
-        $finalPath = $path2;
-    }
-
-    // Optimization: Check for optimized version for web display
-    if ($finalPath && !request()->has('original')) {
-        $pathParts = explode('/', $finalPath);
-        $filename = end($pathParts);
-        $directory = count($pathParts) > 1 ? dirname($finalPath) . '/' : '';
-        $optimizedPath = $directory . 'optimized_' . $filename;
-
-        if ($disk->exists($optimizedPath)) {
-            $finalPath = $optimizedPath;
+    foreach ($possiblePaths as $path) {
+        if ($disk->exists($path)) {
+            $finalPath = $path;
+            break;
         }
     }
 
+    // Optimization check removed as requested. Only serving original files.
+
     if (!$finalPath) {
-        Log::error("Gagal load gambar Google Drive. Mencoba: $path1, $path2, dan $path3. Hasil: Nihil.");
+        Log::error("Gagal load gambar Google Drive. Filename: $filename");
         abort(404);
     }
 
-    // Low Memory Usage: Stream the file instead of loading it all into RAM
+    // Low Memory Usage: Stream the file
     $type = $disk->mimeType($finalPath);
     
     return response()->stream(function() use ($disk, $finalPath) {

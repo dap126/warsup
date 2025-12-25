@@ -18,7 +18,7 @@
         </div>
 
         <div class="bg-white rounded-lg shadow-xl p-8">
-            <h2 class="text-2xl font-bold text-center mb-8 text-gray-800">Login Admin</h2>
+            <h2 class="text-2xl font-bold text-center mb-8 text-gray-800">Login</h2>
 
             @if (session('success'))
                 <div class="mb-4 bg-yellow-100 border border-yellow-400 text-yellow-700 px-4 py-3 rounded text-center relative" role="alert">

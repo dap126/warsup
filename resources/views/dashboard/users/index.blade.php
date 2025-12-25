@@ -68,7 +68,7 @@
                                                 Change Password
                                             </button>
 
-                                            <form action="{{ route('users.destroy', $user) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this user?')">
+                                            <form action="{{ route('users.destroy', $user) }}" method="POST" class="delete-confirm">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit" class="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-xs px-3 py-2 focus:outline-none">

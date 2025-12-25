@@ -6,11 +6,7 @@
         <h1 class="text-2xl font-bold text-gray-900">Dashboard</h1>
     </div>
 
-    @if(session('success'))
-        <div class="p-4 mb-4 text-sm text-green-700 bg-green-100 rounded-lg" role="alert">
-            <span class="font-medium">Success!</span> {{ session('success') }}
-        </div>
-    @endif
+
 
     <div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-2">
         <!-- Users Stat Card -->
@@ -42,6 +38,22 @@
             </div>
             <div class="mt-4">
                 <a href="{{ route('dashboard.posts') }}" class="text-sm font-medium text-green-600 hover:text-green-500 hover:underline">Manage posts &rarr;</a>
+            </div>
+        </div>
+
+        <!-- Services Stat Card -->
+        <div class="bg-white rounded-lg shadow-xl p-6 border-l-4 border-indigo-500">
+            <div class="flex items-center">
+                <div class="inline-flex flex-shrink-0 justify-center items-center w-12 h-12 text-white bg-indigo-600 rounded-lg shadow-md">
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z" clip-rule="evenodd"></path></svg>
+                </div>
+                <div class="ml-6">
+                    <p class="text-sm font-medium text-gray-500 truncate mb-1">Total Services</p>
+                    <div class="text-2xl font-bold text-gray-900">{{ $servicesCount }}</div>
+                </div>
+            </div>
+            <div class="mt-4">
+                <a href="{{ route('services.index') }}" class="text-sm font-medium text-indigo-600 hover:text-indigo-500 hover:underline">Manage services &rarr;</a>
             </div>
         </div>
     </div>

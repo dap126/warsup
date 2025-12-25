@@ -17,7 +17,7 @@
                 @if(Auth::id() === $post->user_id || Auth::user()->role === 'admin')
                     <div class="flex space-x-2">
                         <a href="{{ route('posts.edit', $post) }}" class="bg-yellow-500 text-white px-3 py-1 rounded text-sm hover:bg-yellow-600 transition">Edit</a>
-                        <form action="{{ route('posts.destroy', $post) }}" method="POST" onsubmit="return confirm('Yakin ingin menghapus post ini?')">
+                        <form action="{{ route('posts.destroy', $post) }}" method="POST" class="delete-confirm">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="bg-red-500 text-white px-3 py-1 rounded text-sm hover:bg-red-600 transition">Hapus</button>

@@ -19,9 +19,12 @@
             darkMode: 'class',
         }
     </script>
+    <script src="//unpkg.com/alpinejs" defer></script>
 
 </head>
 <body class="{{ (Request::is('dashboard*') || Request::is('users*')) ? 'bg-white' : 'bg-white font-sans antialiased' }}">
+    
+
 
     @if(Request::is('dashboard*') || Request::is('users*'))
         <!-- Admin Layout Structure -->
@@ -56,14 +59,6 @@
                                         {{ Auth::user()->username ?? 'User' }}
                                     </p>
                                 </div>
-                                <ul class="py-1" role="none">
-                                    <li>
-                                        <form action="{{ route('logout') }}" method="POST">
-                                            @csrf
-                                            <button type="submit" class="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-white hover:text-blue-600" role="menuitem">Sign out</button>
-                                        </form>
-                                    </li>
-                                </ul>
                             </div>
                         </div>
                     </div>
@@ -86,7 +81,13 @@
                                 <li>
                                     <a href="{{ route('dashboard.posts') }}" class="flex items-center p-2 text-base text-gray-900 rounded-lg hover:bg-white hover:shadow-sm group {{ request()->routeIs('dashboard.posts') ? 'bg-white shadow-sm' : '' }}">
                                         <svg class="w-6 h-6 text-gray-500 transition duration-75 group-hover:text-gray-900" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M5 4a3 3 0 00-3 3v6a3 3 0 003 3h10a3 3 0 003-3V7a3 3 0 00-3-3H5zm-1 9v-1h5v2H5a1 1 0 01-1-1zm7 1h4a1 1 0 001-1v-1h-5v2zm0-4h5V8h-5v2zM9 8H4v2h5V8z" clip-rule="evenodd"></path></svg>
-                                        <span class="ml-3">All Posts</span>
+                                        <span class="ml-3">Posts</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('dashboard.services') }}" class="flex items-center p-2 text-base text-gray-900 rounded-lg hover:bg-white hover:shadow-sm group {{ request()->routeIs('services*') ? 'bg-white shadow-sm' : '' }}">
+                                        <svg class="w-6 h-6 text-gray-500 transition duration-75 group-hover:text-gray-900" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z" clip-rule="evenodd"></path></svg>
+                                        <span class="ml-3">Services</span>
                                     </a>
                                 </li>
                                 @if(Auth::check() && Auth::user()->role === 'admin')
@@ -133,7 +134,10 @@
                                     Beranda
                                 </a>
                                 <a href="{{ route('posts.index') }}" class="border-transparent text-gray-500 hover:border-white hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
-                                    Blog
+                                    Article
+                                </a>
+                                <a href="{{ route('services.index') }}" class="border-transparent text-gray-500 hover:border-white hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
+                                    Services
                                 </a>
                             </div>
                         </div>
@@ -144,22 +148,12 @@
                                     <span class="text-gray-700 text-sm font-medium">{{ Auth::user()->username }} ({{ ucfirst(Auth::user()->role) }})</span>
                                     <form action="{{ route('logout') }}" method="POST">
                                         @csrf
-                                        <a href="{{ route('logout') }}" title="Keluar">
-                                            <svg class="w-6 h-6 text-red-500 transition duration-75 group-hover:text-red-900" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                                        <button type="submit" title="Keluar" class="text-red-500 hover:text-red-900 transition duration-150">
+                                            <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
                                                 <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 9V5.25A2.25 2.25 0 0 1 10.5 3h6a2.25 2.25 0 0 1 2.25 2.25v13.5A2.25 2.25 0 0 1 16.5 21h-6a2.25 2.25 0 0 1-2.25-2.25V15m-3 0-3-3m0 0 3-3m-3 3H15" />
                                             </svg>
-                                        </a>
+                                        </button>
                                     </form>
-                                        <a href="{{ route('posts.create') }}" class="ml-4 p-2 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition duration-150 ease-in-out" title="Buat Post Baru">
-                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
-                                            </svg>
-                                        </a>
-                                </div>
-                            @else
-                                <div class="flex items-center space-x-4">
-                                    <a href="{{ route('login') }}" class="text-gray-700 hover:text-blue-600 font-medium text-sm">Masuk</a>
-                                    <a href="{{ route('register') }}" class="px-4 py-2 bg-blue-600 text-white font-medium text-sm rounded-lg hover:bg-blue-700 transition">Daftar</a>
                                 </div>
                             @endauth
                         </div>
@@ -168,11 +162,7 @@
             </nav>
 
             <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                @if (session('success'))
-                    <div class="mb-4 bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative" role="alert">
-                        <span class="block sm:inline">{{ session('success') }}</span>
-                    </div>
-                @endif
+
                 
                 @yield('content')
             </main>
@@ -193,11 +183,37 @@
 
     @endif
 
-    @if(Request::is('dashboard*') || Request::is('users*'))
-        <script src="/assets/admin/app.bundle.js.download"></script>
 
-    @else
-    @endif
+    
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11" defer></script>
+    <script src="{{ asset('js/utils.js') }}" defer></script>
+    <script>
+        // Use window.addEventListener to ensure Toast is available after defer loaded? 
+        // Actually defer scripts execute in order. 
+        // But inline scripts execute immediately (or after parsing).
+        // If external scripts are defer, inline scripts might run BEFORE them if not also deferred or if they don't wait for DOMContentLoaded.
+        // Wait, 'defer' scripts run after HTML parsing. Inline scripts run immediately as encountered.
+        // So inline script will run BEFORE deferred scripts define 'Toast'.
+        // FIX: Wrap inline script in DOMContentLoaded or window.onload, or remove 'defer' from utils?
+        // 'defer' is good. We should wrap inline usage in 'DOMContentLoaded'.
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            // Check for Session Messages
+            @if(session('success'))
+                Toast.fire({
+                    icon: 'success',
+                    title: "{{ session('success') }}"
+                });
+            @endif
+
+            @if(session('error'))
+                Toast.fire({
+                    icon: 'error',
+                    title: "{{ session('error') }}"
+                });
+            @endif
+        });
+    </script>
     @stack('scripts')
 </body>
 </html>
