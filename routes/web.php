@@ -8,6 +8,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ServiceController;
+use App\Http\Controllers\FrontController;
 
 // Public Routes (Only Auth)
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
@@ -16,10 +17,16 @@ Route::get('/register', [AuthController::class, 'showRegisterForm'])->name('regi
 Route::post('/register', [AuthController::class, 'register'])->name('register.post');
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
+Route::get('/', [FrontController::class, 'index'])->name('front');
+Route::get('/about-pages', function () {
+    return view('front.pages.about');
+})->name('about');
+Route::get('/service-pages', [FrontController::class, 'service'])->name('service');
+
 // Protected Routes (All Users)
 Route::middleware(['auth'])->group(function () {
     // Home & List Post (User & Admin)
-    Route::get('/', function () {
+    Route::get('/dashboard-home', function () {
         $recentPosts = \App\Models\Post::with('user')->latest()->take(3)->get();
         return view('home', compact('recentPosts'));
     });

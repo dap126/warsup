@@ -40,7 +40,7 @@
                     <div class="flex items-center">
                         <!-- User Menu -->
                         <div class="flex items-center ml-3">
-                            <a href="{{ url('/') }}" class="flex items-center p-2 text-base text-gray-900 rounded-lg hover:bg-white hover:shadow-sm group {{ request()->routeIs('dashboard') ? 'bg-white shadow-sm' : '' }}">
+                            <a href="{{ url('/dashboard-home') }}" class="flex items-center p-2 text-base text-gray-900 rounded-lg hover:bg-white hover:shadow-sm group {{ request()->routeIs('dashboard') ? 'bg-white shadow-sm' : '' }}">
                                 <svg class="w-6 h-6 text-gray-500 transition duration-75 group-hover:text-gray-900" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6"> <path stroke-linecap="round" stroke-linejoin="round" d="m2.25 12 8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" /> </svg>
                             </a>
                         </div>
@@ -127,10 +127,10 @@
                     <div class="flex justify-between h-16">
                         <div class="flex">
                             <div class="flex-shrink-0 flex items-center">
-                                <a href="{{ url('/') }}" class="text-2xl font-extrabold text-blue-600 tracking-tight">Warsup</a>
+                                <a href="{{ url('/dashboard-home') }}" class="text-2xl font-extrabold text-blue-600 tracking-tight">Warsup</a>
                             </div>
                             <div class="hidden sm:ml-6 sm:flex sm:space-x-8">
-                                <a href="{{ url('/') }}" class="border-transparent text-gray-500 hover:border-white hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
+                                <a href="{{ url('/dashboard-home') }}" class="border-transparent text-gray-500 hover:border-white hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
                                     Beranda
                                 </a>
                                 <a href="{{ route('posts.index') }}" class="border-transparent text-gray-500 hover:border-white hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
