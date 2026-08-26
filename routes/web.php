@@ -21,7 +21,13 @@ Route::get('/', [FrontController::class, 'index'])->name('front');
 Route::get('/about-pages', function () {
     return view('front.pages.about');
 })->name('about');
-Route::get('/service-pages', [FrontController::class, 'service'])->name('service');
+Route::get('/article-pages', function () {
+    return view('front.pages.article');
+})->name('article');
+Route::get('/contact-pages', function () {
+    return view('front.pages.contact');
+})->name('contact');
+// Route::get('/service-pages', [FrontController::class, 'service'])->name('service');
 
 // Protected Routes (All Users)
 Route::middleware(['auth'])->group(function () {
