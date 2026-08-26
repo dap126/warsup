@@ -107,101 +107,6 @@
             <div class="text-center">
                 <div class="title wow fadeInUp" data-wow-delay="0.1s">
                     <div class="title-center">
-                        <h5>Services</h5>
-                        <h1>How We Help You</h1>
-                    </div>
-                </div>
-            </div>
-            <div class="service-item service-item-left">
-                <div class="row g-0 align-items-center">
-                    <div class="col-md-5">
-                        <div class="service-img p-5 wow fadeInRight" data-wow-delay="0.2s">
-                            <img class="img-fluid rounded-circle" src="img/SFI4.jpeg" alt="">
-                        </div>
-                    </div>
-                    <div class="col-md-7">
-                        <div class="service-text px-5 px-md-0 py-md-5 wow fadeInRight" data-wow-delay="0.5s">
-                            <h3 class="text-uppercase">sports field installation</h3>
-                            <p class="mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam feugiat
-                                fermentum urna, sed gravida enim eleifend vitae. Ut rhoncus non metus at convallis.
-                                Maecenas pharetra placerat mauris. Phasellus quis egestas dui. Nullam ornare consectetur
-                                rhoncus. Praesent elit mauris, feugiat quis convallis et, egestas a tellus.</p>
-                            <a class="btn btn-outline-primary border-2 px-4" href="#!">Read More <i
-                                    class="fa fa-arrow-right ms-1"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="service-item service-item-right">
-                <div class="row g-0 align-items-center">
-                    <div class="col-md-5 order-md-1 text-md-end">
-                        <div class="service-img p-5 wow fadeInLeft" data-wow-delay="0.2s">
-                            <img class="img-fluid rounded-circle" src="img/eo.jpeg" alt="">
-                        </div>
-                    </div>
-                    <div class="col-md-7">
-                        <div class="service-text px-5 px-md-0 py-md-5 text-md-end wow fadeInLeft" data-wow-delay="0.5s">
-                            <h3 class="text-uppercase">Event Organization</h3>
-                            <p class="mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam feugiat
-                                fermentum urna, sed gravida enim eleifend vitae. Ut rhoncus non metus at convallis.
-                                Maecenas pharetra placerat mauris. Phasellus quis egestas dui. Nullam ornare consectetur
-                                rhoncus. Praesent elit mauris, feugiat quis convallis et, egestas a tellus.</p>
-                            <a class="btn btn-outline-primary border-2 px-4" href="#!">Read More <i
-                                    class="fa fa-arrow-right ms-1"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="service-item service-item-left">
-                <div class="row g-0 align-items-center">
-                    <div class="col-md-5">
-                        <div class="service-img p-5 wow fadeInRight" data-wow-delay="0.2s">
-                            <img class="img-fluid rounded-circle" src="img/banksampah2.jpeg" alt="">
-                        </div>
-                    </div>
-                    <div class="col-md-7">
-                        <div class="service-text px-5 px-md-0 py-md-5 wow fadeInRight" data-wow-delay="0.5s">
-                            <h3 class="text-uppercase">Waste Bank</h3>
-                            <p class="mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam feugiat
-                                fermentum urna, sed gravida enim eleifend vitae. Ut rhoncus non metus at convallis.
-                                Maecenas pharetra placerat mauris. Phasellus quis egestas dui. Nullam ornare consectetur
-                                rhoncus. Praesent elit mauris, feugiat quis convallis et, egestas a tellus.</p>
-                            <a class="btn btn-outline-primary border-2 px-4" href="#!">Read More <i
-                                    class="fa fa-arrow-right ms-1"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="service-item service-item-right">
-                <div class="row g-0 align-items-center">
-                    <div class="col-md-5 order-md-1 text-md-end">
-                        <div class="service-img p-5 wow fadeInLeft" data-wow-delay="0.2s">
-                            <img class="img-fluid rounded-circle" src="img/pekerjalepas.jpeg" alt="">
-                        </div>
-                    </div>
-                    <div class="col-md-7">
-                        <div class="service-text px-5 px-md-0 py-md-5 text-md-end wow fadeInLeft" data-wow-delay="0.5s">
-                            <h3 class="text-uppercase">full-time freelancer</h3>
-                            <p class="mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam feugiat
-                                fermentum urna, sed gravida enim eleifend vitae. Ut rhoncus non metus at convallis.
-                                Maecenas pharetra placerat mauris. Phasellus quis egestas dui. Nullam ornare consectetur
-                                rhoncus. Praesent elit mauris, feugiat quis convallis et, egestas a tellus.</p>
-                            <a class="btn btn-outline-primary border-2 px-4" href="#!">Read More <i
-                                    class="fa fa-arrow-right ms-1"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Service End -->
-
-    <!-- Testimonial Start -->
-    <div class="container-fluid py-5 bg-secondary">
-        <div class="container py-5">
-            <div class="text-center">
-                <div class="title wow fadeInUp" data-wow-delay="0.1s">
-                    <div class="title-center">
                         <h5>Partnership</h5>
                         <h1>Our Partner</h1>
                     </div>
@@ -230,6 +135,14 @@
                     <span class="text-primary">Profession</span>
                 </div>
             </div>
+        </div>
+    </div>
+    <!-- Service End -->
+
+    <!-- Testimonial Start -->
+    <div class="container-fluid py-5 bg-secondary">
+        <div class="container py-5">
+            // kata kata
         </div>
     </div>
     <!-- Testimonial End -->
