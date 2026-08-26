@@ -28,38 +28,41 @@
 
     @if(Request::is('dashboard*') || Request::is('users*'))
         <!-- Admin Layout Structure -->
-        <nav class="fixed z-30 w-full bg-white border-b border-white">
-            <div class="px-3 py-3 lg:px-5 lg:pl-3">
-                <div class="flex items-center justify-between">
+        <nav class="fixed z-30 w-full bg-white border-b border-gray-100 shadow-sm">
+            <div class="px-4 py-3 lg:px-6 w-full">
+                <div class="flex items-center justify-between w-full">
                     <div class="flex items-center justify-start">
-                        <a class="flex ml-2 md:mr-24">
+                        <a class="flex items-center">
                             <span class="self-center text-xl font-semibold sm:text-2xl whitespace-nowrap">Admin</span>
                         </a>
                     </div>
                     <!-- Admin Top Right Menu -->
-                    <div class="flex items-center">
+                    <div class="flex items-center gap-4">
                         <!-- User Menu -->
-                        <div class="flex items-center ml-3">
-                            <a href="{{ url('/dashboard-home') }}" class="flex items-center p-2 text-base text-gray-900 rounded-lg hover:bg-white hover:shadow-sm group {{ request()->routeIs('dashboard') ? 'bg-white shadow-sm' : '' }}">
+                        <div class="flex items-center">
+                            <a href="{{ url('/home') }}" class="flex items-center p-2 text-base text-gray-900 rounded-lg hover:bg-gray-50 hover:shadow-sm group {{ request()->is('home') ? 'bg-gray-50 shadow-sm' : '' }}">
                                 <svg class="w-6 h-6 text-gray-500 transition duration-75 group-hover:text-gray-900" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6"> <path stroke-linecap="round" stroke-linejoin="round" d="m2.25 12 8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" /> </svg>
                             </a>
                         </div>
-                        <div class="flex items-center ml-3">
-                            <div>
-                                <button type="button" class="flex text-sm bg-gray-800 rounded-full focus:ring-4 focus:ring-gray-300" id="user-menu-button-2" aria-expanded="false" data-dropdown-toggle="dropdown-2">
-                                    <span class="sr-only">Open user menu</span>
-                                    <div class="w-8 h-8 rounded-full bg-gray-500 flex items-center justify-center text-white">
-                                        {{ substr(Auth::user()->username ?? 'A', 0, 1) }}
-                                    </div>
-                                </button>
-                            </div>
-                            <div class="z-50 hidden my-4 text-base list-none bg-white divide-y divide-white rounded shadow" id="dropdown-2">
-                                <div class="px-4 py-3" role="none">
-                                    <p class="text-sm text-gray-900" role="none">
-                                        {{ Auth::user()->username ?? 'User' }}
-                                    </p>
+                        <div class="flex items-center gap-4">
+                            <!-- User Name -->
+                            <div class="flex items-center gap-2">
+                                <div class="w-8 h-8 rounded-full bg-gray-500 flex items-center justify-center text-white font-bold">
+                                    {{ strtoupper(substr(Auth::user()->username ?? 'A', 0, 1)) }}
                                 </div>
+                                <span class="text-sm font-semibold text-gray-900">{{ Auth::user()->username ?? 'User' }}</span>
                             </div>
+                            
+                            <!-- Logout Button -->
+                            <form method="POST" action="{{ route('logout') }}" class="m-0">
+                                @csrf
+                                <button type="submit" class="flex items-center gap-2 px-3 py-1.5 text-sm font-medium text-red-600 bg-red-50 rounded-lg hover:bg-red-100 transition-colors">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-4 h-4">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15m3 0l3-3m0 0l-3-3m3 3H9" />
+                                    </svg>
+                                    Logout
+                                </button>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -127,10 +130,10 @@
                     <div class="flex justify-between h-16">
                         <div class="flex">
                             <div class="flex-shrink-0 flex items-center">
-                                <a href="{{ url('/dashboard-home') }}" class="text-2xl font-extrabold text-blue-600 tracking-tight">Warsup</a>
+                                <a href="{{ url('/home') }}" class="text-2xl font-extrabold text-blue-600 tracking-tight">Warsup</a>
                             </div>
                             <div class="hidden sm:ml-6 sm:flex sm:space-x-8">
-                                <a href="{{ url('/dashboard-home') }}" class="border-transparent text-gray-500 hover:border-white hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
+                                <a href="{{ url('/home') }}" class="border-transparent text-gray-500 hover:border-white hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
                                     Beranda
                                 </a>
                                 <a href="{{ route('posts.index') }}" class="border-transparent text-gray-500 hover:border-white hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">

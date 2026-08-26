@@ -26,10 +26,10 @@ Route::get('/service-pages', [FrontController::class, 'service'])->name('service
 // Protected Routes (All Users)
 Route::middleware(['auth'])->group(function () {
     // Home & List Post (User & Admin)
-    Route::get('/dashboard-home', function () {
+    Route::get('/home', function () {
         $recentPosts = \App\Models\Post::with('user')->latest()->take(3)->get();
         return view('home', compact('recentPosts'));
-    });
+    })->name('home');
     // Create Posts (All Authenticated Users)
     Route::get('/posts/create', [PostController::class, 'create'])->name('posts.create');
     Route::post('/posts', [PostController::class, 'store'])->name('posts.store');

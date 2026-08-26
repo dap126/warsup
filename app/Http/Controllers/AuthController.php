@@ -28,7 +28,7 @@ class AuthController extends Controller
                 if (Auth::user()->role === 'admin') {
                     return redirect()->intended('dashboard');
                 }
-                return redirect()->intended('/');
+                return redirect()->intended('/home');
             }
 
             Auth::logout();
@@ -74,6 +74,6 @@ class AuthController extends Controller
 
         $request->session()->regenerateToken();
 
-        return redirect('/');
+        return redirect('/login');
     }
 }
